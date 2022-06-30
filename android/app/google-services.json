@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "971945341217",
+    "project_id": "lookaftermyvilla",
+    "storage_bucket": "lookaftermyvilla.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:971945341217:android:d879332879091c96214e60",
+        "android_client_info": {
+          "package_name": "com.myvila"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "971945341217-c6o5ane33ir95q3os29fj2oc8l6q2b6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.myvila",
+            "certificate_hash": "8c4f72604623f021ebb5d16d479b7685fc71ba78"
+          }
+        },
+        {
+          "client_id": "971945341217-tobs69o8qgbpmnd7ud62pf6o8nipr2ub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3y3n-twQtGjiR5gzGjdSPVmJRkqGnYOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "971945341217-tobs69o8qgbpmnd7ud62pf6o8nipr2ub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
