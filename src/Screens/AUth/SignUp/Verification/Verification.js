@@ -21,6 +21,7 @@ import Input from '../../../../Components/Input/input.component';
 import {showToaster} from '../../../../Config/Contants';
 import AuthIcon from '../../../../../assets/images/AuthIcon';
 import FocusAwareStatusBar from '../../../../Components/StatusBar/FocusAwareStatusBar';
+import {Bold, Medium} from '../../../../Colors/Fonfamily';
 const Verification = props => {
   const {
     email,
@@ -41,6 +42,8 @@ const Verification = props => {
   const [input3, setInput3] = useState('');
   const [input4, setInput4] = useState('');
   console.log('Checkcode', input1 + input2 + input3 + input4);
+  console.log('otpcode', verfiedCode);
+
   const [input1Foucs, setinput1Foucs] = useState(false);
   const [input2Foucs, setInput2Foucs] = useState(false);
   const [input3Foucs, setInput3Foucs] = useState(false);
@@ -67,8 +70,9 @@ const Verification = props => {
   };
 
   const Signup = async () => {
+    const code = input1 + input2 + input3 + input4;
     try {
-      if (checkcode != verfiedCode) {
+      if (code != verfiedCode) {
         showToaster('Invalid otp code.');
       }
       if (!email) {
@@ -87,7 +91,7 @@ const Verification = props => {
         showToaster('Please enter the password');
         return;
       }
-      if (checkcode == verfiedCode) {
+      if (code == verfiedCode) {
         setLoading(true);
         const apiCall = await axios.post(`${baseUrl2}/user/signup`, {
           email: email,
@@ -139,7 +143,13 @@ const Verification = props => {
       <Loader visible={isLoading} color={priamry} />
       <FocusAwareStatusBar barStyle="dark-content" backgroundColor={'white'} />
 
-      <View style={{margin: 10}}>
+      <View
+        style={{
+          margin: 10,
+          // alignItems: 'center',
+          zIndex: -2000,
+          // justifyContent: 'space-between',
+        }}>
         <TouchableOpacity
           onPress={() => {
             isForgotPasswordScreen
@@ -148,24 +158,40 @@ const Verification = props => {
           }}>
           <Ionicons name="arrow-back" color="black" size={30} />
         </TouchableOpacity>
+        <Text
+          style={{
+            position: 'absolute',
+            right: 0,
+            left: 0,
+            textAlign: 'center',
+            fontSize: 20,
+            fontFamily: Bold,
+            zIndex: -2000,
+            color: '#000',
+          }}>
+          Varify Phone
+        </Text>
       </View>
-      <View
+      <Text
+        style={{
+          textAlign: 'center',
+          marginTop: 20,
+          fontSize: 18,
+          fontFamily: Medium,
+          color: 'grey',
+          alignItems: 'center',
+        }}>
+        Code is send to {email}
+      </Text>
+      {/* <View
         style={{
           justifyContent: 'center',
           alignItems: 'center',
           marginTop: '20%',
         }}>
         <AuthIcon />
-        {/* <Image
-          source={require('../../../../../assets/verification.png')}
-          style={{
-            width: 200,
-            height: 200,
-            alignSelf: 'center',
-            resizeMode: 'contain',
-          }}
-        /> */}
-      </View>
+       
+      </View> */}
 
       <View
         style={{
@@ -173,7 +199,7 @@ const Verification = props => {
           width: '100%',
           justifyContent: 'center',
           alignItems: 'center',
-          marginTop: 20,
+          marginTop: '60%',
         }}>
         <SafeAreaView style={styles.root}>
           <View
@@ -292,7 +318,7 @@ const Verification = props => {
           onPress={() =>
             isForgotPasswordScreen ? forgotPassword() : Signup()
           }>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>Varify and Create account</Text>
         </TouchableOpacity>
       </View>
     </View>

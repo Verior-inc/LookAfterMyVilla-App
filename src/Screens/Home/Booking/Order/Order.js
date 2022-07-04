@@ -22,6 +22,7 @@ import moment from 'moment';
 import {useIsFocused} from '@react-navigation/native';
 const Order = props => {
   const [data, setData] = React.useState();
+  // console.log('>>>>>>>>', data.cancelled);
   const [isLoading, setLoading] = React.useState(true);
   const [selectedtype, setSelectedtype] = React.useState('Pending');
   const [activebtn, setactivebtn] = React.useState(null);
@@ -202,7 +203,7 @@ const Order = props => {
                   : data.pending
               }
               renderItem={({item, index}) => {
-                console.log('category', item);
+                console.log('category', item.description);
                 return (
                   <View style={{flex: 1}}>
                     <Card

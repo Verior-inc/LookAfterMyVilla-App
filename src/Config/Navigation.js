@@ -33,6 +33,7 @@ import BudgetFile from '../Screens/Home/Booking/Order/BudgetFile';
 import Address from '../Screens/Address';
 import ONB2 from '../Screens/Home/onboardingui/Onb2';
 import {Medium} from '../Colors/Fonfamily';
+import PhoneVarify from '../Screens/AUth/SignUp/Verification/PhoneVarify';
 const navigationhandel = () => ({
   headerShown: false,
 });
@@ -223,6 +224,11 @@ const HomeStack = props => {
         component={Address}
       />
       <Stack.Screen options={navigationhandel} name="ONB2" component={ONB2} />
+      <Stack.Screen
+        options={navigationhandel}
+        name="PhoneVarify"
+        component={PhoneVarify}
+      />
     </Stack.Navigator>
   );
 };

@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: SemiBold,
     color: '#000',
+    marginTop: 15,
   },
   mainCondtl: {
     justifyContent: 'center',
@@ -22,11 +23,12 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: '30%',
-    height: 30,
+    height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: priamry,
-    marginTop: 50,
+    marginTop: 40,
+    borderRadius: 10,
     // marginLeft:"50%"
   },
   Text: {

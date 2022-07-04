@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {SemiBold} from '../../../Colors/Fonfamily';
+import {Medium, SemiBold} from '../../../Colors/Fonfamily';
 import {priamry} from '../../../Colors/PrimaryColor';
 const styles = StyleSheet.create({
   maincon: {
@@ -73,6 +73,8 @@ const styles = StyleSheet.create({
   FooterText: {
     marginLeft: 10,
     fontSize: 17,
+    fontFamily: Medium,
+    color: '#000',
   },
 });
 export default styles;
