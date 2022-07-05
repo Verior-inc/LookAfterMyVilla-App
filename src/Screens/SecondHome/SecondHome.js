@@ -21,6 +21,63 @@ import baseUrl2 from '../../ApisAuth/Baseurl2/BaseUrl2';
 import {getUserName} from '../AUth/Login/Authservices';
 import {showToaster} from '../../Config/Contants';
 import {SemiBold} from '../../Colors/Fonfamily';
+import PushNotification from 'react-native-push-notification';
+import messaging from '@react-native-firebase/messaging';
+export async function requestUserPermission() {
+  const authorizationStatus = await messaging().requestPermission();
+
+  if (authorizationStatus) {
+    console.log('Permission status:', authorizationStatus);
+    getToken();
+  }
+}
+const getToken = async () => {
+  alert('work');
+
+  console.log('get token call ');
+  let fcmToken = await AsyncStorage.getItem('fcmToken');
+  console.log('old token', fcmToken);
+  if (!fcmToken) {
+    fcmToken = await messaging().getToken();
+    try {
+      if (!fcmToken) {
+        console.log('THe new generate', fcmToken);
+        await AsyncStorage.setItem('fcmToken', fcmToken);
+      }
+    } catch (error) {
+      console.log('error');
+    }
+    if (fcmToken) {
+      console.log('get token call ', fcmToken);
+    }
+  }
+};
+const NotificationListener = navigation => {
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    // setnotificationfirenase(remoteMessage.notification);
+    console.log(
+      'Notification caused app to open from background state:',
+      remoteMessage.notification,
+    );
+    navigation.navigate('Notification');
+  });
+
+  messaging().onMessage(async remoteMessage => {
+    console.log('Recievd in foreground', remoteMessage);
+    // setnotificationfirenase(remoteMessage);
+  });
+
+  messaging()
+    .getInitialNotification()
+    .then(remoteMessage => {
+      if (remoteMessage) {
+        console.log(
+          'Notification caused app to open from quit state:',
+          remoteMessage.notification,
+        );
+      }
+    });
+};
 
 var offercard = [
   {
@@ -55,7 +112,9 @@ const SecondHome = ({navigation}) => {
     const user_id = await AsyncStorage.getItem('_id');
     setuserid(user_id);
   };
-
+  React.useEffect(() => {
+    NotificationListener();
+  }, []);
   React.useEffect(() => {
     mainservicesapicall();
   }, []);
